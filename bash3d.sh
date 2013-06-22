@@ -26,14 +26,17 @@ function axisrot {
          $(( $t * $x * $z + $y * $s )) $(( $t * $y * $z + $x * $s )) $(( $t * $z * $z + $c ))
 }
 
-width=`tput cols`
-height=$LINES
-hwidth=`expr $width / 2`
-hheight=`expr $height / 2`
+declare -i width=`tput cols`
+declare -i height=$LINES
+declare -i hwidth=$(( $width / 2 ))
+declare -i hheight=$(( $height / 2 ))
 
 function drawxy {
-    local x=$1 y=$2 z=$3 c=$4
-    tput cup $(( $y + $hheight )) $(( $x + $hwidth ))
+    local -i x=$1
+    local -i y=$2
+    local -i z=$3
+    local -i c=$4
+    tput cup $(( y + hheight )) $(( x + hwidth ))
     printf "%s" $c
 }
 
